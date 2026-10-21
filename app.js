@@ -201,12 +201,27 @@
         ${lab.sugerido ? '<span class="tag tag-suggested">Sugerido · verificar registro SRS</span>' : ""}
       </div>
       <p>${esc(lab.descripcion)}</p>
+      ${lab.guia ? labGuide(lab) : ""}
       ${groups
         .map(
           ([c, ps]) => `<h2 class="section-title">${cat(c).icono} ${esc(cat(c).nombre)} <span class="small muted">${ps.length}</span></h2>
           <div class="grid">${ps.map(productCard).join("")}</div>`
         )
         .join("")}`;
+  }
+
+  function labGuide(lab) {
+    return `<details class="card guide"><summary><strong>🧭 Guía por patología</strong> <span class="small muted">¿qué peeling elegir?</span></summary>
+      <div class="grid" style="margin-top:12px">${lab.guia
+        .map(
+          (g) => `<div class="card"><h3>${esc(g.trastorno)}</h3>
+            <div class="kv">${g.opciones
+              .map(([nivel, id]) => `<div>${esc(nivel)}</div><div><a href="#/producto/${id}">${esc(productsById[id].nombre.replace(/^INNO-EXFO® /, ""))}</a></div>`)
+              .join("")}</div></div>`
+        )
+        .join("")}</div>
+      ${lab.fuenteGuia ? `<p class="small muted">Fuente: ${esc(lab.fuenteGuia)}</p>` : ""}
+      ${lab.adyuvantes ? `<h3 style="margin-top:16px">Adyuvantes</h3>${list(lab.adyuvantes)}` : ""}</details>`;
   }
 
   function viewProduct(id, tab) {
@@ -221,6 +236,7 @@
       ["seguridad", "Seguridad"],
       ["evidencia", "Evidencia"],
     ];
+    if (p.protocolo) tabs.splice(2, 0, ["protocolo", "Protocolo"]);
 
     const ficha = `<div class="kv">
         <div>Principio activo</div><div>${val(p.principioActivo)}</div>
@@ -230,10 +246,30 @@
         <div>Lidocaína</div><div>${p.lidocaina ? "Sí (0.3 %) o versión disponible con lidocaína" : "No"}</div>
         <div>Presentación</div><div>${val(p.presentacion)}</div>
         ${p.dilucion ? `<div>Reconstitución</div><div>${esc(p.dilucion.diluyente)}<br><strong>${esc(p.dilucion.estandar)}</strong>${p.categoria === "toxina" ? '<br><a href="#/calculadora?prod=' + p.id + '">Abrir en la calculadora →</a>' : ""}</div>` : ""}
+        ${p.ph ? `<div>pH</div><div><strong>${esc(p.ph)}</strong></div>` : ""}
+        ${p.profundidad ? `<div>Profundidad del peeling</div><div>${esc(p.profundidad)}</div>` : ""}
+        ${p.molestia ? `<div>Molestia</div><div>${esc(p.molestia)}</div>` : ""}
+        ${p.recuperacion ? `<div>Recuperación</div><div>${esc(p.recuperacion)}</div>` : ""}
+        ${p.sesionesMin ? `<div>Sesiones mínimas</div><div>${esc(p.sesionesMin)}</div>` : ""}
         <div>Conservación</div><div>${val(p.conservacion)}</div>
         <div>Duración del efecto</div><div>${val(p.duracion)}</div>
         <div>Características</div><div>${list(p.caracteristicas)}</div>
-      </div>`;
+      </div>
+      ${p.fuente ? `<p class="small muted">Fuente: ${esc(p.fuente)}</p>` : ""}`;
+
+    const pr = p.protocolo || {};
+    const protocolo = `<div class="kv">
+        <div>1. Preparación de la piel</div><div>${val(pr.preparacion)}</div>
+        <div>2. Técnica de aplicación</div><div>${val(pr.tecnica)}</div>
+        <div>Cantidad</div><div>${val(pr.cantidad)}</div>
+        <div>3. Tiempo de exposición</div><div><strong>${val(pr.tiempo)}</strong></div>
+        <div>4. Neutralización</div><div>${val(pr.neutralizacion)}</div>
+        <div>5. Cuidado inmediato</div><div>${val(pr.postPeel)}</div>
+        <div>Frecuencia y n.º de sesiones</div><div><strong>${val(pr.sesiones)}</strong></div>
+        <div>Mantenimiento</div><div>${val(pr.mantenimiento)}</div>
+        ${p.domiciliario ? `<div>Tratamiento domiciliario</div><div>${list(p.domiciliario)}</div>` : ""}
+      </div>
+      ${p.fuente ? `<p class="small muted">Fuente: ${esc(p.fuente)}</p>` : ""}`;
 
     const zonasFaciales = p.zonas.filter((z) => FACE_POINTS[z]);
     const uso = `<div class="face-wrap">
@@ -260,7 +296,7 @@
       </div>
       <p class="small muted">Información general de la categoría «${esc(cat(p.categoria).nombre)}». Consulta el inserto del producto.</p>`;
 
-    const body = { ficha, uso, seguridad, evidencia: evidenceLinks(p) }[t] || ficha;
+    const body = { ficha, uso, protocolo, seguridad, evidencia: evidenceLinks(p) }[t] || ficha;
 
     return `<nav class="breadcrumb"><a href="#/">Laboratorios</a> › <a href="#/lab/${lab.id}">${esc(lab.nombre)}</a> › ${esc(p.nombre)}</nav>
       <div class="sheet-head">
@@ -309,6 +345,7 @@
           p.composicion,
           p.concentracion,
           p.tecnologia,
+          p.profundidad,
           cat(p.categoria).nombre,
           ...(p.indicaciones || []),
           ...p.zonas.map((z) => DB.zonas[z]),
@@ -398,6 +435,17 @@
       ["Conservación", (p) => val(p.conservacion)],
       ["Aprobaciones", (p) => val(p.aprobaciones)],
     ];
+    if (ps.some((p) => p.ph))
+      rows.splice(
+        4,
+        0,
+        ["pH", (p) => val(p.ph)],
+        ["Profundidad", (p) => val(p.profundidad)],
+        ["Recuperación", (p) => val(p.recuperacion)],
+        ["Exposición", (p) => val(p.protocolo && p.protocolo.tiempo)],
+        ["Neutralización", (p) => val(p.protocolo && p.protocolo.neutralizacion)],
+        ["Sesiones", (p) => val(p.protocolo && p.protocolo.sesiones)]
+      );
     const mixed = new Set(ps.map((p) => p.categoria)).size > 1;
 
     return `<div class="sheet-head"><h1>Comparar productos</h1>

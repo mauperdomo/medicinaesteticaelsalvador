@@ -161,7 +161,7 @@ a.card:hover { transform: translateY(-2px); border-color: var(--primary); }
   .kv > div:nth-child(odd) { border-bottom: 0; padding-bottom: 0; }
 }
 .tabs { display: flex; gap: 6px; overflow-x: auto; margin: 16px 0 12px; padding-bottom: 4px; }
-.tabs button { flex: none; }
+.tabs .chip { flex: none; white-space: nowrap; }
 ul.clean { margin: 0; padding-left: 1.1rem; }
 ul.clean li { margin: 2px 0; }
 
@@ -201,3 +201,6 @@ table.compare thead th { background: var(--surface-2); }
 .hero { margin-bottom: 8px; }
 .hero p { margin: 0; }
 .footer-note { margin-top: 32px; font-size: .8rem; color: var(--muted); text-align: center; }
+
+.guide summary { cursor: pointer; }
+.guide .card { box-shadow: none; background: var(--surface-2); }
