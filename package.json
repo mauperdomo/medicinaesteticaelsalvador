@@ -1,0 +1,18 @@
+{
+  "name": "vademecum-inyectables",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vademécum de inyectables dermatológicos para médicos de El Salvador (web y Android).",
+  "scripts": {
+    "build": "node scripts/build-www.mjs",
+    "android:sync": "npm run build && npx cap sync android",
+    "android:apk": "npm run android:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.2",
+    "@capacitor/core": "^6.2.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.2"
+  }
+}

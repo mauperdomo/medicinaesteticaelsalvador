@@ -1,0 +1,8 @@
+{
+  "appId": "sv.medicinaestetica.vademecum",
+  "appName": "Vademécum Inyectables",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#0f766e"
+  }
+}

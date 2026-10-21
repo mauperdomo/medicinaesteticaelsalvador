@@ -72,10 +72,14 @@ h3 { font-size: 1rem; }
 .topbar {
   position: sticky; top: 0; z-index: 20;
   display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-  padding: 10px 16px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
   background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
+
+/* Sensación de app nativa: sin resaltado al tocar ni rebote de la página. */
+html { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+.bottomnav a, .btn, .chip { touch-action: manipulation; user-select: none; -webkit-user-select: none; }
 .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); white-space: nowrap; }
 .search-top { flex: 1 1 240px; }
 .search-top input, .field input, .field select {

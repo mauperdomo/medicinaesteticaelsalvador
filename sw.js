@@ -1,5 +1,5 @@
 // Service worker: permite usar el vademécum sin conexión (en consulta).
-const CACHE = "vademecum-v8";
+const CACHE = "vademecum-v9";
 const ASSETS = [
   "./",
   "index.html",
@@ -8,6 +8,10 @@ const ASSETS = [
   "data/productos.js",
   "manifest.webmanifest",
   "assets/icon.svg",
+  "assets/icon-192.png",
+  "assets/icon-512.png",
+  "assets/icon-maskable-512.png",
+  "assets/apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (e) => {
