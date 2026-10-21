@@ -501,7 +501,7 @@
   }
 
   // Vial por defecto de cada toxina en la calculadora.
-  const TOXIN_DEFAULT_UNITS = { botox: 100, xeomin: 100, dysport: 300, letybo: 100 };
+  const TOXIN_DEFAULT_UNITS = { botox: 100, xeomin: 100, dysport: 300, letybo: 100, newlux: 100 };
 
   function viewCalculator(params) {
     const sel = params.get("prod") || "botox";

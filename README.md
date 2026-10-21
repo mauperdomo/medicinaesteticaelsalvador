@@ -12,7 +12,8 @@ indicaciones/zonas, seguridad y evidencia clínica.
 
 ## Funciones
 
-- **Laboratorios**: Allergan, Merz, Innoaesthetics y Croma, más laboratorios sugeridos
+- **Laboratorios**: Allergan, Merz, Innoaesthetics, Croma, Medytox (NEWLUX®), REGEN Biotech
+  (AestheFill®, PowerFill®) y Toskani, más laboratorios sugeridos
   (Galderma, Teoxane, IBSA, Sinclair, Hugel, Fillmed, Mastelli y mesoestetic), cuyo registro
   en la SRS debe confirmarse.
 - **Categorías**: toxina botulínica, ácido hialurónico, bioestimuladores,
