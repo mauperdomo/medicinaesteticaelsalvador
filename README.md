@@ -33,7 +33,7 @@ No necesita instalación ni compilación. Abre `index.html` o sírvela como siti
 python3 -m http.server 8000   # luego abre http://localhost:8000
 ```
 
-Para publicarla, activa GitHub Pages en este repositorio (Settings → Pages → rama `main`, carpeta raíz).
+Se publica sola en GitHub Pages con `.github/workflows/pages.yml` (requisito único: Settings → Pages → Source: «GitHub Actions»). Dirección: https://mauperdomo.github.io/medicinaesteticaelsalvador/
 En el celular: «Agregar a pantalla de inicio».
 
 ## App móvil
