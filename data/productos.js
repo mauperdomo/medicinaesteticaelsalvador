@@ -8,7 +8,7 @@
  * "Verificar en ficha técnica".
  */
 window.VADEMECUM = {
-  version: "2026-10-21e",
+  version: "2026-10-21f",
 
   categorias: {
     toxina: { nombre: "Toxina botulínica", color: "#7c5cff", icono: "💉" },
@@ -262,8 +262,8 @@ window.VADEMECUM = {
       pais: "Suiza / Italia",
       sitio: "https://www.ibsaderma.com",
       descripcion:
-        "Fabricante de Profhilo, un complejo híbrido de ácido hialurónico estabilizado térmicamente (sin BDDE).",
-      sugerido: true,
+        "Grupo farmacéutico suizo (Lugano, 1945) que fabrica su propio ácido hialurónico por biofermentación. Línea Hydrolift®: Profhilo®, complejos híbridos estabilizados térmicamente sin BDDE.",
+      sugerido: false,
     },
     {
       id: "sinclair",
@@ -4302,25 +4302,64 @@ window.VADEMECUM = {
       lab: "ibsa",
       nombre: "Profhilo®",
       categoria: "meso",
-      principioActivo: "Complejo híbrido de ácido hialurónico (HL-HA + LL-HA)",
-      concentracion: "32 mg HA de alto peso + 32 mg HA de bajo peso en 2 ml (64 mg/2 ml)",
-      composicion:
-        "Complejos cooperativos híbridos de HA estabilizados térmicamente (tecnología NAHYCO), sin BDDE ni otros reticulantes químicos.",
-      presentacion: "Jeringas de 2 ml",
+      principioActivo: "Complejos híbridos de ácido hialurónico estabilizados térmicamente (H-AH + L-AH)",
+      concentracion: "64 mg de AH en 2 ml (32 mg H-AH + 32 mg L-AH)",
+      composicion: "Ácido hialurónico ultrapuro de biofermentación (Streptococcus zooepidemicus) de alto peso molecular (H-AH, 1100–1400 kDa) y de bajo peso molecular (L-AH, 80–100 kDa), unidos por enlaces de hidrógeno mediante un proceso térmico patentado (NAHYCO). Sin BDDE ni otros reticulantes químicos.",
+      presentacion: "Jeringa precargada de 2 ml",
       lidocaina: false,
-      tecnologia: "NAHYCO Hybrid Technology",
+      tecnologia: "NAHYCO® Hybrid Technology (complejos híbridos estabilizados térmicamente)",
       caracteristicas: [
-        "Bioremodelación: alta difusión en el tejido; no aporta volumen",
-        "Técnica BAP (Bio Aesthetic Points): 5 puntos por hemicara, 0.2 ml por punto",
-        "Protocolo: 2 sesiones con 4 semanas de intervalo",
+        "Bio-remodelación: no es un relleno ni un biorrevitalizante clásico; no aporta volumen",
+        "Alta concentración con baja viscosidad: gran fluidez y difusión lenta y duradera por los espacios intersticiales",
+        "Los complejos híbridos son más resistentes a la hialuronidasa, lo que permite reducir puntos y sesiones",
+        "Actúa sobre queratinocitos, fibroblastos y adipocitos; baja respuesta inflamatoria (TGF-β no sobreexpresado in vitro)",
+        "Resultados desde 1–2 días (efecto completo a la semana en algunos pacientes)",
       ],
-      indicaciones: ["Laxitud cutánea leve-moderada", "Calidad de piel en rostro, cuello y manos"],
-      zonas: ["rostro_completo", "cuello", "manos", "escote"],
-      plano: "Subdérmico (bolos)",
-      aguja: "29 G, 13 mm",
-      duracion: "Hasta 6 meses tras el protocolo",
-      conservacion: "Hasta 25 °C",
-      aprobaciones: "CE",
+      indicaciones: [
+        "Laxitud cutánea de cara, cuello y cuerpo",
+        "Bio-remodelación del tercio inferior y de las regiones malar y submalar",
+        "Reparación dérmica en acné o cicatrices",
+        "Pérdida o compromiso del tejido adiposo superficial",
+        "Edad: 40–50 años como perfil ideal; mínima recomendada 30 años",
+      ],
+      zonas: ["mejilla", "mandibula", "rostro_completo", "cuello", "escote", "manos", "cuerpo"],
+      plano: "Dermis profunda (aguja a 3–4 mm); en cuello, microbolos en plano superficial",
+      aguja: "Aguja 29 G (técnica BAP) o cánula 25 G × 50 mm en técnica retrógrada",
+      duracion: "4–6 meses tras el protocolo de 2 sesiones",
+      conservacion: "Hasta 25 °C; no congelar (verificar en el envase)",
+      aprobaciones: "CE (producto sanitario) – verificar registro SRS",
+      protocolo: {
+        tecnica: "Técnica BAP (Bio-Aesthetic Points): 5 puntos por hemicara, en bolo, en dermis profunda. Alternativa: cánula 25 G × 50 mm en técnica retrógrada.",
+        profundidad: "Dermis profunda; aguja a 3–4 mm. Evitar la inyección superficial.",
+        volumenPunto: "0.2 ml por bolo (1 jeringa de 2 ml para los 10 puntos de ambos lados)",
+        porZona: [
+          "Rostro, 5 puntos BAP por lado: protuberancia cigomática; 1 cm por encima del ángulo mandibular; 1 cm por delante del margen inferior del trago; mentón (comisura labial); base nasal.",
+          "Cuello: microbolos en plano superficial, sin irregularidades ni masaje posterior. Tener en cuenta venas yugulares, carótidas, glándulas submaxilares, tiroides, laringe y tráquea.",
+        ],
+        postPeel: "Masaje suave solo si el bolo queda visible. Frío local para el enrojecimiento o el dolor. Evitar ejercicio el día del tratamiento, otros tratamientos estéticos 2 días, y sauna, vapor y sol o cabina UV 2 semanas. Hidratación de 1.5–2 l de agua al día.",
+        sesiones: "2 sesiones con 4 semanas de intervalo; considerar una 3.ª en laxitud muy severa",
+        mantenimiento: "Control a los 6–8 meses",
+      },
+      seguridadExtra: [
+        "Efectos esperables: dolor, calor y enrojecimiento transitorios; el punto cigomático puede tardar hasta 1 semana más en resolverse",
+        "Inyectado en el plano correcto (dermis media-profunda) y en zona malar/submalar no suele producir edema",
+        "La diapositiva del BAP indica «2 ml por bolus»: es una errata; la dosis estándar es 0.2 ml por punto",
+      ],
+      evidencia: [
+        {
+          titulo: "Sparavigna A. et al. 2016 – Clin Cosmet Investig Dermatol 9:297-305",
+          url: "https://pubmed.ncbi.nlm.nih.gov/?term=Sparavigna+2016+hyaluronic+hybrid+cooperative+complexes",
+        },
+        {
+          titulo: "Stellavato A. et al. 2016 – PLoS One 11(10):e0163510",
+          url: "https://pubmed.ncbi.nlm.nih.gov/?term=Stellavato+2016+hybrid+complexes+hyaluronic",
+        },
+        {
+          titulo: "D'Agostino A. et al. 2015 – BMC Cell Biol 16:19",
+          url: "https://pubmed.ncbi.nlm.nih.gov/?term=D%27Agostino+2015+hyaluronan+hybrid+cooperative+complexes",
+        },
+      ],
+      fuente: "Presentación Profhilo® (IBSA Derma)",
       revisado: false,
     },
 
