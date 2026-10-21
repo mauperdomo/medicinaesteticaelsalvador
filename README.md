@@ -4,6 +4,12 @@ App web (PWA, funciona sin conexión) para médicos: productos inyectables y pee
 organizados por laboratorio, con concentración, composición, características,
 indicaciones/zonas, seguridad y evidencia clínica.
 
+## Capturas
+
+| Inicio | Ficha y zonas | Protocolo de peeling |
+|---|---|---|
+| ![Inicio](capturas/1-inicio.png) | ![Ficha](capturas/3-ficha-zonas.png) | ![Protocolo](capturas/4-protocolo.png) |
+
 ## Funciones
 
 - **Laboratorios**: Allergan, Merz, Innoaesthetics y Croma, más laboratorios sugeridos
