@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Vademécum Inyectables</title>
+  <meta name="description" content="Vademécum de productos dermatológicos inyectables para médicos de El Salvador: toxinas, ácido hialurónico, bioestimuladores, mesoterapia y peelings." />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand" aria-label="Inicio">
+      <img src="assets/icon.svg" alt="" width="28" height="28" />
+      <span>Vademécum <strong>Inyectables</strong></span>
+    </a>
+    <form class="search-top" id="searchTop" role="search">
+      <input type="search" id="searchTopInput" placeholder="Buscar producto, componente o zona…" aria-label="Buscar" />
+    </form>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <div id="compareTray" class="compare-tray" hidden></div>
+
+  <nav class="bottomnav" aria-label="Navegación principal">
+    <a href="#/" data-nav="inicio"><span aria-hidden="true">🏷️</span>Laboratorios</a>
+    <a href="#/buscar" data-nav="buscar"><span aria-hidden="true">🔍</span>Buscar</a>
+    <a href="#/comparar" data-nav="comparar"><span aria-hidden="true">⚖️</span>Comparar<b id="compareCount" class="badge" hidden></b></a>
+    <a href="#/calculadora" data-nav="calculadora"><span aria-hidden="true">🧮</span>Dilución</a>
+    <a href="#/acerca" data-nav="acerca"><span aria-hidden="true">ℹ️</span>Acerca</a>
+  </nav>
+
+  <script src="data/productos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
