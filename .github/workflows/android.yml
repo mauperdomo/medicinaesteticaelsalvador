@@ -29,7 +29,7 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - uses: android-actions/setup-android@v3
+      # ubuntu-latest ya incluye el SDK de Android (ANDROID_HOME) con las licencias aceptadas.
 
       - name: Instalar dependencias y copiar la app web
         run: |
