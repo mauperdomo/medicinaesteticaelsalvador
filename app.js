@@ -226,6 +226,7 @@
     ["neutralizacion", "Neutralización"],
     ["postPeel", "Cuidado inmediato"],
     ["esquemas", "Dilución y dosis por indicación"],
+    ["porZona", "Técnica por zona"],
     ["sesiones", "Frecuencia y n.º de sesiones", true],
     ["mantenimiento", "Seguimiento"],
   ];
