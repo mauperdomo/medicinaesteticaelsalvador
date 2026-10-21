@@ -64,5 +64,6 @@ para que los usuarios reciban la nueva versión.
 
 Herramienta de consulta para profesionales de la salud. Los datos se recopilaron de fichas
 técnicas e insertos internacionales y **deben verificarse** contra el inserto aprobado por la
-[Superintendencia de Regulación Sanitaria](https://www.srs.gob.sv). Los productos de
-Innoaesthetics y algunos campos de otros laboratorios aparecen marcados como pendientes de verificar.
+[Superintendencia de Regulación Sanitaria](https://www.srs.gob.sv). Las fichas de Innoaesthetics
+(INNO-TDS® e INNO-EXFO®) provienen de los catálogos oficiales del laboratorio y citan la página de origen;
+algunos campos de otros laboratorios aparecen marcados como pendientes de verificar.

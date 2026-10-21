@@ -88,6 +88,7 @@
       <div class="small">${esc(p.principioActivo)}</div>
       <div class="conc">${val(p.concentracion)}</div>
       <div class="chips">
+        ${p.usoDomiciliario ? '<span class="chip on">Uso domiciliario</span>' : ""}
         ${p.lidocaina ? '<span class="chip">Con lidocaína</span>' : ""}
         ${p.tecnologia ? `<span class="chip">${esc(p.tecnologia)}</span>` : ""}
         ${p.duracion ? `<span class="chip">⏱ ${esc(p.duracion)}</span>` : ""}
@@ -201,6 +202,7 @@
         ${lab.sugerido ? '<span class="tag tag-suggested">Sugerido · verificar registro SRS</span>' : ""}
       </div>
       <p>${esc(lab.descripcion)}</p>
+      ${lab.notas ? `<div class="notice small">${list(lab.notas)}</div>` : ""}
       ${lab.guia ? labGuide(lab) : ""}
       ${groups
         .map(
@@ -209,6 +211,24 @@
         )
         .join("")}`;
   }
+
+  // Campos de protocolo en el orden en que se ejecutan; solo se muestran los presentes.
+  const PROTOCOL_FIELDS = [
+    ["preparacion", "Preparación de la piel"],
+    ["dilucion", "Reconstitución", true],
+    ["tecnica", "Técnica de aplicación"],
+    ["profundidad", "Profundidad"],
+    ["distancia", "Distancia entre puntos"],
+    ["cantidad", "Cantidad"],
+    ["volumenPunto", "Volumen por inyección", true],
+    ["volumenSesion", "Volumen total por sesión"],
+    ["tiempo", "Tiempo de exposición", true],
+    ["neutralizacion", "Neutralización"],
+    ["postPeel", "Cuidado inmediato"],
+    ["esquemas", "Dilución y dosis por indicación"],
+    ["sesiones", "Frecuencia y n.º de sesiones", true],
+    ["mantenimiento", "Seguimiento"],
+  ];
 
   function labGuide(lab) {
     return `<details class="card guide"><summary><strong>🧭 Guía por patología</strong> <span class="small muted">¿qué peeling elegir?</span></summary>
@@ -247,6 +267,7 @@
         <div>Presentación</div><div>${val(p.presentacion)}</div>
         ${p.dilucion ? `<div>Reconstitución</div><div>${esc(p.dilucion.diluyente)}<br><strong>${esc(p.dilucion.estandar)}</strong>${p.categoria === "toxina" ? '<br><a href="#/calculadora?prod=' + p.id + '">Abrir en la calculadora →</a>' : ""}</div>` : ""}
         ${p.ph ? `<div>pH</div><div><strong>${esc(p.ph)}</strong></div>` : ""}
+        ${p.osmolaridad ? `<div>Osmolaridad</div><div>${esc(p.osmolaridad)}</div>` : ""}
         ${p.profundidad ? `<div>Profundidad del peeling</div><div>${esc(p.profundidad)}</div>` : ""}
         ${p.molestia ? `<div>Molestia</div><div>${esc(p.molestia)}</div>` : ""}
         ${p.recuperacion ? `<div>Recuperación</div><div>${esc(p.recuperacion)}</div>` : ""}
@@ -259,16 +280,15 @@
 
     const pr = p.protocolo || {};
     const protocolo = `<div class="kv">
-        <div>1. Preparación de la piel</div><div>${val(pr.preparacion)}</div>
-        <div>2. Técnica de aplicación</div><div>${val(pr.tecnica)}</div>
-        <div>Cantidad</div><div>${val(pr.cantidad)}</div>
-        <div>3. Tiempo de exposición</div><div><strong>${val(pr.tiempo)}</strong></div>
-        <div>4. Neutralización</div><div>${val(pr.neutralizacion)}</div>
-        <div>5. Cuidado inmediato</div><div>${val(pr.postPeel)}</div>
-        <div>Frecuencia y n.º de sesiones</div><div><strong>${val(pr.sesiones)}</strong></div>
-        <div>Mantenimiento</div><div>${val(pr.mantenimiento)}</div>
+        ${PROTOCOL_FIELDS.filter(([k]) => pr[k])
+          .map(([k, label, strong]) => {
+            const v = Array.isArray(pr[k]) ? list(pr[k]) : esc(pr[k]);
+            return `<div>${label}</div><div>${strong ? `<strong>${v}</strong>` : v}</div>`;
+          })
+          .join("")}
         ${p.domiciliario ? `<div>Tratamiento domiciliario</div><div>${list(p.domiciliario)}</div>` : ""}
       </div>
+      ${/UTI/.test(JSON.stringify(pr)) ? '<p class="small muted">1 UTI (Unidad Terapéutica Innoaesthetics) = 0.02 ml.</p>' : ""}
       ${p.fuente ? `<p class="small muted">Fuente: ${esc(p.fuente)}</p>` : ""}`;
 
     const zonasFaciales = p.zonas.filter((z) => FACE_POINTS[z]);

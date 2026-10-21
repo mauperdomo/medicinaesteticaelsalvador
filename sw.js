@@ -1,5 +1,5 @@
 // Service worker: permite usar el vademécum sin conexión (en consulta).
-const CACHE = "vademecum-v2";
+const CACHE = "vademecum-v3";
 const ASSETS = [
   "./",
   "index.html",
