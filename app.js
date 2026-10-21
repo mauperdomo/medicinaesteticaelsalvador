@@ -43,14 +43,14 @@
   function toggleCompare(id) {
     if (compare.includes(id)) compare = compare.filter((x) => x !== id);
     else if (compare.length >= MAX_COMPARE) {
-      alert(`Puedes comparar hasta ${MAX_COMPARE} productos a la vez.`);
+      renderCompareUI(`Máximo ${MAX_COMPARE} productos. Quita uno para agregar otro.`);
       return;
     } else compare.push(id);
     store.set("compare", compare);
     renderCompareUI();
   }
 
-  function renderCompareUI() {
+  function renderCompareUI(message) {
     const count = document.getElementById("compareCount");
     count.hidden = compare.length === 0;
     count.textContent = compare.length;
@@ -62,7 +62,7 @@
     const tray = document.getElementById("compareTray");
     const onComparePage = location.hash.startsWith("#/comparar");
     tray.hidden = compare.length === 0 || onComparePage;
-    tray.innerHTML = `<span>${compare.length} de ${MAX_COMPARE} seleccionados</span>
+    tray.innerHTML = `<span>${message ? esc(message) : `${compare.length} de ${MAX_COMPARE} seleccionados`}</span>
       <a class="btn" href="#/comparar">Ver comparación</a>`;
   }
 
